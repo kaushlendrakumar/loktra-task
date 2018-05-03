@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="loktraApp">
+<head>
+	<title>Loktra | Cart</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+</head>
+<body ng-controller="loktraCtrl">
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12" id="header">
+				Loktra
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="main-page-container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="col-xs-12 col-md-8">
+					<div class="col-xs-12" id="cart-conatiner">
+						<div class="row">
+							<div class="col-xs-12 container-heading">MY CART ({{get_localStorage_data.length}})</div>
+						</div>
+						<div class="row cart-each-item" ng-repeat="item in get_localStorage_data">
+							<div class="col-xs-12">
+								<div class="img-qnt-container text-center">
+									<img src="../assets/img/{{item.imgName}}">
+									<div class="qnty-wrapper">
+										<div class="minus-btn-wrp" ng-click="minusItem()">
+											-
+										</div>
+										<div class="qnyty-input-wrp">
+											<input type="text" 
+												ng-model="item.qnty" 
+												oninput="this.value = this.value.replace(/[^1-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+												ng-blur="changeItemQnty()">
+										</div>
+										<div class="plus-btn-wrp" ng-click="plusItem()">
+											+
+										</div>
+									</div>
+								</div>
+								<div class="item-details-wrapper">
+									<div class="item-heading">{{item.itemName}}</div>
+									<div class="item-config">{{item.itemConfig}}</div>
+									<div class="item-real-price">
+										<span class="offer-price">₹ <span class="num">{{item.itemOfrPrice}}</span></span>
+										<span class="real-price">₹ <span class="num">{{item.itemRelPrice}}</span></span>
+									</div>
+									<div class="remove-item-btn" ng-click="removeItem()">Remove</div>
+								</div>
+							</div>
+						</div>
+						<div class="bottom-btn-wrapper" ng-if="get_localStorage_data.length > 0">
+							<button class="pull-right place-order-btn">Place order</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<div class="col-xs-12" id="price-details-conatiner">
+						<div class="row">
+							<div class="col-xs-12 container-heading">PRICE DETAILS</div>
+						</div>
+						<div class="row pt-20">
+							<div class="col-xs-12 price-item-wrapper">
+								<div class="col-xs-12 p-0">
+									<div class="col-xs-7 p-0">Price (<span>{{get_localStorage_data.length}}</span> items)</div>
+									<div class="col-xs-5 p-0  text-right">
+										₹ <span>{{getTotalAmount(get_localStorage_data)}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 price-item-wrapper">
+								<div class="col-xs-12 p-0">
+									<div class="col-xs-7 p-0">Delivery Charges</div>
+									<div class="col-xs-5 p-0 green-color text-right">
+										FREE
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 price-item-wrapper">
+								<div class="col-xs-12 p-0 amount-wrapper">
+									<div class="col-xs-7 p-0">Amount Payable</div>
+									<div class="col-xs-5 p-0 text-right">
+										₹ <span>{{getTotalAmount(get_localStorage_data)}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row total-amount-wrapper">
+							<div class="col-xs-12 price-item-wrapper">
+								<div class="col-xs-12 p-0 green-color">
+									Your Total Savings on this order
+								</div>
+								<div class="col-xs-12 p-0 green-color">
+									₹ <span>{{getTotalSaving(get_localStorage_data)}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+	<script type="text/javascript" src="../assets/js/index.js"></script>
+</body>
+</html>
