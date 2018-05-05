@@ -23,7 +23,10 @@ body{
 			max-height: calc(100vh - 63px);
 			position: relative;
 			padding-bottom: 75px;
-			overflow-y: auto;
+			#main-item-container{
+				max-height: calc(100vh - 181px);
+				overflow-y: auto;
+			}
 			.bottom-btn-wrapper{
 				position: absolute;
 				width: 100%;
