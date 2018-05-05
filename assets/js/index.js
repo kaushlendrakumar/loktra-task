@@ -20,23 +20,7 @@ app.controller('loktraCtrl', function($scope) {
     		"itemOfrPrice" : 790,
     		"itemRelPrice" : 1799,
     		"qnty" : 1
-    	},
-        {
-            "imgName" : "honor.jpeg",
-            "itemName" : "Honor 9 Lite (Glacier Grey, 64 GB)",
-            "itemConfig" : "4 GB RAM",
-            "itemOfrPrice" : 14999,
-            "itemRelPrice" : 16999,
-            "qnty" : 1
-        },
-        {
-            "imgName" : "watch.jpeg",
-            "itemName" : "Provogue MIGHTY-030307 Watch - For Men",
-            "itemConfig" : "6 Month Guarantee",
-            "itemOfrPrice" : 790,
-            "itemRelPrice" : 1799,
-            "qnty" : 1
-        }
+    	}
     ]
 
     $scope.get_localStorage_data = JSON.parse(localStorage.getItem('localStored_data'));
